@@ -30,8 +30,8 @@ This API facilitates the management of users, expenses, and balance sheets for a
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-repo/daily-expenses-sharing.git
-cd daily-expenses-sharing
+git clone https://github.com/omkarsathe01/daily-expenses-sharing-app
+cd daily-expenses-sharing-app
 ```
 
 2. Install the dependencies:
