@@ -1,0 +1,65 @@
+### POST: Create an User
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "User One",
+    "email": "userone@email.com",
+    "mobile": "9999999999"
+}
+
+### POST: Create an User
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "User Two",
+    "email": "usertwo@email.com",
+    "mobile": "9999999999"
+}
+
+### POST: Create an User
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "name": "User Three",
+    "email": "userthree@email.com",
+    "mobile": "9999999999"
+}
+
+### GET: Get all Users
+GET http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+### GET: Get user by id
+GET http://localhost:3000/users/100 HTTP/1.1
+content-type: application/json
+
+### PATCH: Update user by id
+PATCH http://localhost:3000/users/1 HTTP/1.1
+content-type: application/json
+
+### DELETE: Delete user by email
+DELETE http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "email": "userone@email.com"
+}
+
+### DELETE: Delete user by email
+DELETE http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "email": "usertwo@email.com"
+}
+
+### DELETE: Delete user by email
+DELETE http://localhost:3000/users HTTP/1.1
+content-type: application/json
+
+{
+    "email": "userthree@email.com"
+}
