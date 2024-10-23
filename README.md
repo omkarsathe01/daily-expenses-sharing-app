@@ -42,6 +42,10 @@ npm install
 
 3. Configure environment variables (update the [.env](https://github.com/omkarsathe01/daily-expenses-sharing-app/blob/master/.env.example) file with your database and other credentials).
 
+```bash
+cp .env.example .env
+```
+
 4. Run the application:
 
 ```bash
