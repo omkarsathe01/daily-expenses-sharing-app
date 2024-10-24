@@ -12,7 +12,7 @@ import { Counter } from 'prom-client';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private readonly usersRepository: Repository<User>,
     @InjectMetric('get_users_calls')
     public counter: Counter<string>,
   ) {}

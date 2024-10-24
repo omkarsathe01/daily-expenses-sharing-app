@@ -17,7 +17,7 @@ import { ObjectId } from 'mongodb';
 export class ExpensesService {
   constructor(
     @InjectRepository(Expense)
-    private expenseRepository: Repository<Expense>,
+    private readonly expenseRepository: Repository<Expense>,
     @Inject(UsersService)
     private readonly usersService: UsersService,
   ) {}
@@ -138,7 +138,7 @@ export class ExpensesService {
     expense: Expense,
   ) {
     const totalPercentage = shares.reduce(
-      (sum, share) => sum + (share.percent || 0),
+      (sum, share) => sum + (share.percent ?? 0),
       0,
     );
 
@@ -178,8 +178,7 @@ export class ExpensesService {
       percent: share.percent || null,
     });
 
-    if (share.email === paidBy) {
-    } else {
+    if (share.email !== paidBy) {
       const existingDue = user.dues.find((due) => due.email === paidBy);
       if (existingDue) {
         existingDue.amount += amount;

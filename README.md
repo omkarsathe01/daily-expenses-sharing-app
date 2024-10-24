@@ -1,8 +1,14 @@
-<p style="text-align: center;">
+<p align="center">
   <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-  <h1 style="text-align: center;">Daily Expenses Sharing API</h1>
+  <h1 align="center">Daily Expenses Sharing API</h1>
+
+<p align="center">
+  <a href="https://sonarcloud.io/summary/new_code?id=omkarsathe01_daily-expenses-sharing-app">
+    <img src="https://sonarcloud.io/api/project_badges/measure?project=omkarsathe01_daily-expenses-sharing-app&metric=alert_status" alt="Quality Gate Status">
+  </a>
+</p>
 
 ## Overview
 
