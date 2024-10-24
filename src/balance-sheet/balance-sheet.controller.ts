@@ -12,7 +12,7 @@ export class BalanceSheetController {
     const filePath = await this.balanceSheetService.generateBalanceSheet();
 
     const currentTime = new Date();
-    const path = `balance-sheet-${currentTime.getFullYear()}-${currentTime.getDate()}-${currentTime.getMonth() + 1}.csv`
+    const path = `balance-sheet-${currentTime.getFullYear()}-${currentTime.getDate()}-${currentTime.getMonth() + 1}.csv`;
     console.log(path);
 
     res.download(join(process.cwd(), filePath), path, (err) => {

@@ -1,34 +1,41 @@
-import { Type } from "class-transformer";
-import { IsEmail, IsMobilePhone, IsMongoId, IsNumber, IsString, ValidateNested } from "class-validator";
+import { Type } from 'class-transformer';
+import {
+  IsEmail,
+  IsMobilePhone,
+  IsMongoId,
+  IsNumber,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 
 class UserAmountResponseDto {
-    @IsEmail()
-    email: string
+  @IsEmail()
+  email: string;
 
-    @IsNumber()
-    amount: number
+  @IsNumber()
+  amount: number;
 }
 
 export class UserResponseDto {
-    @IsNumber()
-    user_id: number
-    
-    @IsString()
-    name: string;
-    
-    @IsEmail()
-    email: string;
+  @IsNumber()
+  user_id: number;
 
-    @IsMobilePhone()
-    mobile: string
+  @IsString()
+  name: string;
 
-    @IsNumber()
-    balance: number
+  @IsEmail()
+  email: string;
 
-    @ValidateNested({ each: true })
-    @Type(() => UserAmountResponseDto)
-    dues: UserAmountResponseDto[]
+  @IsMobilePhone()
+  mobile: string;
 
-    @IsMongoId()
-    transaction_history: string[]
+  @IsNumber()
+  balance: number;
+
+  @ValidateNested({ each: true })
+  @Type(() => UserAmountResponseDto)
+  dues: UserAmountResponseDto[];
+
+  @IsMongoId()
+  transaction_history: string[];
 }

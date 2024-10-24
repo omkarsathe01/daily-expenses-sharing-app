@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { EmailDto } from './dto/email.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 
@@ -20,7 +19,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<UserResponseDto | {}> {
+  async findOne(@Param('id') id: string): Promise<UserResponseDto | object> {
     return await this.usersService.findOne(+id);
   }
 

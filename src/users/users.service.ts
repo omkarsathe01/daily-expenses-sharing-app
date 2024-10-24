@@ -5,13 +5,16 @@ import { User } from './entities/user.entity';
 import { DeepPartial, DeleteResult, Repository } from 'typeorm';
 import { EmailDto } from './dto/email.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { InjectMetric } from '@willsoto/nestjs-prometheus';
+import { Counter } from 'prom-client';
 
 @Injectable()
 export class UsersService {
-
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    @InjectMetric('get_users_calls')
+    public counter: Counter<string>,
   ) {}
 
   public async createUserByEmail(emailDto: EmailDto): Promise<User> {
@@ -20,34 +23,34 @@ export class UsersService {
       isActive: false,
       balance: 0,
       transaction_history: [],
-      dues: []
-    }
+      dues: [],
+    };
 
     return await this.usersRepository.save(newUser);
   }
 
   private async checkIfUserExists(email: string): Promise<boolean> {
-    const user =  await this.usersRepository.findOneBy({ email });
-    
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-  
-  async create(createUserDto: CreateUserDto) {
+    const user: User | null = await this.usersRepository.findOneBy({ email });
+
+    return !!user;
+  }
+
+  async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
+    this.counter.inc();
+
     const user = await this.checkIfUserExists(createUserDto.email);
-    
+
     if (user) {
-      throw new UnprocessableEntityException({message: 'User with the same email already exists.'});
+      throw new UnprocessableEntityException({
+        message: 'User with the same email already exists.',
+      });
     }
 
     const lastInsertedUser = await this.usersRepository.findOne({
       order: {
-        created_at: 'DESC'
-      }
-    })
+        created_at: 'DESC',
+      },
+    });
 
     const newUser: DeepPartial<User> = {
       name: createUserDto.name,
@@ -56,24 +59,22 @@ export class UsersService {
       balance: createUserDto.balance || 0,
       dues: [],
       transaction_history: [],
-      isActive: true
-    }
+      isActive: true,
+    };
 
     newUser.user_id = (lastInsertedUser?.user_id || 99) + 1;
 
     const savedUser = await this.usersRepository.save(newUser);
 
-    const response: UserResponseDto = {
+    return {
       user_id: savedUser.user_id,
       name: savedUser.name,
       email: savedUser.email,
       mobile: savedUser.mobile,
       balance: savedUser.balance,
       dues: savedUser.dues,
-      transaction_history: savedUser.transaction_history
-    }
-
-    return response;
+      transaction_history: savedUser.transaction_history,
+    };
   }
 
   async findAll(): Promise<UserResponseDto[]> {
@@ -96,21 +97,20 @@ export class UsersService {
   }
 
   async findOneByEmail(email: string) {
-    const user = await this.usersRepository.findOneBy({ email });
     // if (user?.isActive === false) {
     //   console.log('if')
     //   throw new BadRequestException(`${email} exists but need to activate an account.`);
     // } else {
     //   console.log('else')
-    return user;
+    return await this.usersRepository.findOneBy({ email });
     // }
   }
 
   public async findOne(user_id: number) {
     const user = await this.usersRepository.findOneBy({ user_id });
 
-    if(user === null) {
-      return { message: 'User does not exists.'}
+    if (user === null) {
+      return { message: 'User does not exists.' };
     }
 
     const response: UserResponseDto = {
@@ -120,8 +120,8 @@ export class UsersService {
       mobile: user.mobile,
       balance: user.balance,
       dues: user.dues,
-      transaction_history: user.transaction_history
-    }
+      transaction_history: user.transaction_history,
+    };
 
     return response;
   }
@@ -131,6 +131,6 @@ export class UsersService {
   }
 
   async remove(emailDto: EmailDto): Promise<DeleteResult> {
-    return await this.usersRepository.delete({ email: emailDto.email })
+    return await this.usersRepository.delete({ email: emailDto.email });
   }
 }

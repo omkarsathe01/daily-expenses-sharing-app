@@ -8,10 +8,10 @@ export class BalanceSheetService {
 
   async generateBalanceSheet(): Promise<string> {
     const users = await this.usersService.findAll();
-    const records = users.map(user => ({
+    const records = users.map((user) => ({
       email: user.email,
       balance: user.balance,
-      dues: user.dues.map(due => `${due.email}: ${due.amount}`).join(', '),
+      dues: user.dues.map((due) => `${due.email}: ${due.amount}`).join(', '),
     }));
 
     const csvWriter = createObjectCsvWriter({

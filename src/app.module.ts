@@ -12,9 +12,7 @@ import { BalanceSheetModule } from './balance-sheet/balance-sheet.module';
       type: 'mongodb',
       url: process.env.MONGODB_CONNECTION_STRING,
       database: process.env.MONGODB_DATABASE,
-      entities: [
-        __dirname + '/**/*.entity{.ts,.js}',
-      ],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       ssl: true,
       useUnifiedTopology: true,
       useNewUrlParser: true,
@@ -22,7 +20,7 @@ import { BalanceSheetModule } from './balance-sheet/balance-sheet.module';
     }),
     UsersModule,
     ExpensesModule,
-    BalanceSheetModule
+    BalanceSheetModule,
   ],
   controllers: [],
   providers: [],

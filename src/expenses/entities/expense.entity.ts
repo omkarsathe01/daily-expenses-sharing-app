@@ -1,59 +1,65 @@
-import { Column, CreateDateColumn, Entity, ObjectId, ObjectIdColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectId,
+  ObjectIdColumn,
+} from 'typeorm';
 
 export enum SplitType {
-    EQUAL = "equal",
-    EXACT = "exact",
-    PERCENT = "percent",
+  EQUAL = 'equal',
+  EXACT = 'exact',
+  PERCENT = 'percent',
 }
 
 class ReceiverUser {
-    @Column()
-    email: string
+  @Column()
+  email: string;
 
-    @Column()
-    name: string
+  @Column()
+  name: string;
 }
 
 class UserShare {
-    @Column()
-    email: string
+  @Column()
+  email: string;
 
-    @Column()
-    amount: number
+  @Column()
+  amount: number;
 
-    @Column()
-    percent: number | null
+  @Column()
+  percent: number | null;
 }
 
 @Entity()
 export class Expense {
-    @ObjectIdColumn()
-    id: ObjectId
+  @ObjectIdColumn()
+  id: ObjectId;
 
-    @Column()
-    date: Date
+  @Column()
+  date: Date;
 
-    @Column()
-    amount: number
+  @Column()
+  amount: number;
 
-    @Column()
-    description: string
+  @Column()
+  description: string;
 
-    @Column()
-    paid_to: ReceiverUser[]
+  @Column()
+  paid_to: ReceiverUser[];
 
-    @Column()
-    paid_by: string
+  @Column()
+  paid_by: string;
 
-    @Column({
-        type: 'enum',
-        enum: SplitType,
-    })
-    split_type: SplitType
+  @Column({
+    type: 'enum',
+    enum: SplitType,
+  })
+  split_type: SplitType;
 
-    @Column(type => UserShare)
-    shares: UserShare[]
+  @Column(() => UserShare)
+  shares: UserShare[];
 
-    @CreateDateColumn()
-    created_at: Date
+  @CreateDateColumn()
+  created_at: Date;
 }

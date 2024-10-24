@@ -1,8 +1,8 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+<p style="text-align: center;">
+  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-  <h1 align="center">Daily Expenses Sharing API</h1>
+  <h1 style="text-align: center;">Daily Expenses Sharing API</h1>
 
 ## Overview
 
@@ -29,28 +29,28 @@ This API facilitates the management of users, expenses, and balance sheets for a
 ## Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/omkarsathe01/daily-expenses-sharing-app
-cd daily-expenses-sharing-app
-```
+   ```bash
+   git clone https://github.com/omkarsathe01/daily-expenses-sharing-app
+   cd daily-expenses-sharing-app
+   ```
 
 2. Install the dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. Configure environment variables (update the [.env](https://github.com/omkarsathe01/daily-expenses-sharing-app/blob/master/.env.example) file with your database and other credentials).
 
-```bash
-cp .env.example .env
-```
+   ```bash
+   cp .env.example .env
+   ```
 
 4. Run the application:
 
-```bash
-npm run start
-```
+   ```bash
+   npm run start
+   ```
 
 ## API Endpoints
 
@@ -98,7 +98,7 @@ npm run start
 ### Expenses
 
 | Method | Endpoint      | Description                       | Request Body	          | Response                   |
-|------- |---------------|-----------------------------------|------------------------|----------------------------|
+|--------|---------------|-----------------------------------|------------------------|----------------------------|
 | POST   | /expenses     | Create a new expense              | CreateExpenseDto       | ExpenseResponseDto         |
 | GET    | /expenses     | Retrieve all expenses             | N/A                    | ExpenseResponseDto[]       |
 | GET    | /expenses/:id | Retrieve a specific expense by ID | N/A                    | ExpenseResponseDto         |
@@ -161,9 +161,9 @@ npm run start
 
 ### Balance Sheet
 
-| Method | Endpoint                | Description                              | Request Body	 |Response  |
-|--------|-------------------------|------------------------------------------|----------------|----------|
-| GET    | /balance-sheet/download | Download the balance sheet as a CSV file | N/A            | CSV file |
+| Method | Endpoint                | Description                              | Request Body	 | Response |
+|--------|-------------------------|------------------------------------------|---------------|----------|
+| GET    | /balance-sheet/download | Download the balance sheet as a CSV file | N/A           | CSV file |
 
 ## Schemas
 
@@ -185,16 +185,16 @@ npm run start
 
 ### Expense Entity
 
-| Field       | Type          | Description                                   |
-|-------------|---------------|-----------------------------------------------|
-| id          | ObjectId      | Unique identifier for the expense             |
-| amount      | number        | Total amount of the expense                   |
-| description | string        | Description of the expense                    |
-| paid_to     | ReceiverUser[]| List of users who received the payment        |
-| paid_by     | string        | Email of the user who paid                    |
-| split_type  | SplitType     | The type of split (equal, exact, percent)     |
-| shares      | UserShare[]   | List of how the expense was shared            |
-| created_at  | Date          | Date when the expense was created             |
+| Field       | Type           | Description                               |
+|-------------|----------------|-------------------------------------------|
+| id          | ObjectId       | Unique identifier for the expense         |
+| amount      | number         | Total amount of the expense               |
+| description | string         | Description of the expense                |
+| paid_to     | ReceiverUser[] | List of users who received the payment    |
+| paid_by     | string         | Email of the user who paid                |
+| split_type  | SplitType      | The type of split (equal, exact, percent) |
+| shares      | UserShare[]    | List of how the expense was shared        |
+| created_at  | Date           | Date when the expense was created         |
 
 
 ## Technologies Used

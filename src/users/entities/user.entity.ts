@@ -1,45 +1,52 @@
-import { Column, CreateDateColumn, Entity, ObjectId, ObjectIdColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectId,
+  ObjectIdColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 class UserAmount {
-    @Column()
-    email: string
+  @Column()
+  email: string;
 
-    @Column()
-    amount: number
+  @Column()
+  amount: number;
 }
 
 @Entity('user')
 export class User {
-    @ObjectIdColumn()
-    id: ObjectId
+  @ObjectIdColumn()
+  id: ObjectId;
 
-    @Column()
-    user_id: number
+  @Column()
+  user_id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column({ unique: true })
-    email: string;
+  @Column({ unique: true })
+  email: string;
 
-    @Column()
-    mobile: string
+  @Column()
+  mobile: string;
 
-    @Column()
-    balance: number
+  @Column()
+  balance: number;
 
-    @Column()
-    dues: UserAmount[]
+  @Column()
+  dues: UserAmount[];
 
-    @Column()
-    transaction_history: string[]
+  @Column()
+  transaction_history: string[];
 
-    @Column()
-    isActive: boolean
+  @Column()
+  isActive: boolean;
 
-    @CreateDateColumn()
-    created_at: Date
-    
-    @UpdateDateColumn()
-    updated_at: Date
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
